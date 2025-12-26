@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="todo-container">
+    <h2>📝 To-Do App</h2>
+    
+
+
+    <div class="input-group">
+      <input type="text" id="taskInput" placeholder="Enter task">
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList">
+      <!-- Tasks will be added here -->
+    </ul>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
+
+    function addTask() {
+      if (taskInput.value === "") {
+        alert("Please enter a task");
+        return;
+      }
+
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span onclick="toggleTask(this)">${taskInput.value}</span>
+        <button onclick="deleteTask(this)">Delete</button>
+      `;
+
+      taskList.appendChild(li);
+      taskInput.value = "";
+    }
+
+    function deleteTask(btn) {
+      btn.parentElement.remove();
+    }
+
+    function toggleTask(task) {
+      task.classList.toggle("completed");
+    }
+  </script>
+</body>
+</html>
